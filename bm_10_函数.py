@@ -64,21 +64,125 @@ change(list_test)
 # 以下是调用函数时可使用的正式参数类型：
 #
 # 必需参数
-# 关键字参数
 # 默认参数
+
 # 不定长参数
+# 关键字参数
+
 
 # 必须参数(必需参数须以正确的顺序传入函数。调用时的数量必须和声明时的一样。)
-def print_me(str):
-    print(str)
+def print_me(str1):
+    print(str1)
 
 
+print_me(str1="12121")
 print_me("yuanxianchao")
+print_me("123456")
 
 
-# 关键字参数
+# 关键字参数(允许函数调用时参数的顺序与声明不一致，因为python解释器能够用参数名匹配)
 def print_me(str1, str2):
     print(str1, end=",")
     print(str2)
 
+
 print_me("1", 2)
+print_me(str2="1", str1="2")
+
+
+# 默认参数
+def print_info(name, age=15):
+    """打印任何传入的字符串"""
+    print("名字：", name)
+    print("年龄：", age)
+
+
+print_info("mujunlong", 18)
+print_info("yuanxianchao", 14)
+print_info('zhuwenchao')
+
+
+# 不定长参数(*的参数会以tuple的形式导入，存放所有未命名的变量参数)
+def print_info(arg1, *args):
+    print(type(args))
+    print(arg1, args)
+
+
+print_info(123, 1213, 122222)
+
+
+def print_info(arg1, *args):
+    print("输出")
+    print(f"args={arg1}")
+    for val in args:
+        print(val, type(val))
+
+
+print_info(123)
+print_info(10, 20, {1, 2, 3}, 40, {121212})
+
+
+# 连个**的参数会以字典的形式导入
+def print_info(arg1, **kwargs):
+    print("输出：")
+    print(arg1)
+    print(kwargs)
+
+
+print_info(123, key=123)
+
+
+# 可接收任意参数
+def print_info(*args, **kwargs):
+    print("输出：")
+    print(args)
+    print(kwargs)
+
+
+print_info(11, 22, a=23, key="123")
+
+
+# *也可以单独出现，则*后的参数必须用关键字传入
+def print_info(a, b, *, c):
+    print(a, b, c)
+
+
+print_info(1, 2, c=3)
+
+
+def print_info(a, b, **kwargs):
+    print(type(kwargs))
+    print(a, b, kwargs)
+
+
+print_info(1, 2, c=100)
+
+"""
+匿名函数
+lambda 只是一个表达式，函数体比 def 简单很多。
+lambda 的主体是一个表达式，而不是一个代码块。仅仅能在 lambda 表达式中封装有限的逻辑进去。
+lambda 函数拥有自己的命名空间，且不能访问自己参数列表之外或全局命名空间里的参数。
+虽然 lambda 函数看起来只能写一行，却不等同于 C 或 C++ 的内联函数，后者的目的是调用小函数时不占用栈内存从而增加运行效率。
+"""
+func = lambda b: b + 10
+print(func)
+print(func(100))
+
+func = lambda a, b: a + b
+print(func(1, 2))
+
+
+def my_func(n):
+    return lambda a: a * n
+
+
+my_lambda1 = my_func(2)
+my_lambda2 = my_func(3)
+
+print(type(my_lambda1), my_lambda1(1))
+print(type(my_lambda2), my_lambda2(2))
+
+
+# 强制位置参数(3.8以后支持)
+# def print_info(a, b, /, c, d , *, e, f):
+#     print(a, b, c, d, e, f)
