@@ -35,6 +35,7 @@ class B(A):
 
 
 # python所有的类都是<class 'type'>
+print(type(A))
 print(type(B) == type(A))
 print(type(B()) == type(A))
 print(type(B()) == A)

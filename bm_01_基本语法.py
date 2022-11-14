@@ -30,7 +30,9 @@ total = item_one + \
         item_thr
 
 # [] {} ()中的多行语句不用使用\
-total = ["item_one", "item_two", "item_thr"]
+total = ["item_one",
+         "item_two",
+         "item_thr"]
 
 # 字符串‘’ “” ''''''(指定多行字符串)
 word = "字符串"
