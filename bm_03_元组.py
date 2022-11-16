@@ -14,7 +14,7 @@ tiny_tuple = ("456",)
 # del删除元组对象引用
 # del tuple_test
 
-print("abc" not in tuple_test)
+print(1223 not in tuple_test)
 print(tuple_test.index("abc"))
 print(tuple_test.count("abc"))
 
